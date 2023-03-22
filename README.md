@@ -1,7 +1,8 @@
 # Search
-SpringBoot Multi-Module 구성의 OpenAPI 블로그 검색 프로젝트 
-
+SpringBoot Multi-Module 구성의 OpenAPI 블로그 검색 프로젝트
 `SpringBoot 3.0.4`, `Java 17`, `Gradle`, `h2`, `JPA`, `Redis`
+  * https://github.com/haileyzero/search
+  * https://drive.google.com/file/d/1JwjMkmSONZPwri03lWYOY1sAiG4HAUHL/view?usp=sharing
 
 ## Open Source
 * lombok
