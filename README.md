@@ -1,11 +1,24 @@
 # Search
+SpringBoot Multi-Module 구성의 OpenAPI 블로그 검색 프로젝트 
 `SpringBoot 3.0.4`, `Java 17`, `Gradle`, `h2`, `JPA`, `Redis`
+
+## Open Source
+* lombok
+  * Annotation을 사용해서 반복되는 메소드를 자동으로 작성해주는 라이브러리
+* embedded-redis
+  * Local Server 환경 용도의 내장형 레디스
+* spring-boot-starter-data-jpa
+  * Spring JPA 
+* spring-retry
+  * 작업 실패 시 재시도 및 복구
 
 ## API 명세
 ### 블로그 검색
 #### GET /search
 카카오 OpenAPI를 이용하여 키워드를 통해 블로그를 검색합니다.
 장애가 발생한 경우, 네이버 OpenAPI를 이용하여 검색합니다.
+* 카카오 API의 키워드로 블로그 검색: https://developers.kakao.com/docs/latest/ko/daum-search/dev-guide#search-blog
+* 네이버 블로그 검색 API: https://developers.naver.com/docs/serviceapi/search/blog/blog.md
 
 ##### Parameters
 |Element|Description|Type|
@@ -71,4 +84,44 @@
     ...
   ]
 }  
+```
+
+### 인기 검색어 목록
+#### GET /rank
+인기 검색어 10개를 검색된 횟수와 함께 제공합니다.
+
+##### Parameters
+|Element|Description|Type|
+|:---:|:---:|:---:|
+
+##### Returns
+|Element|Description|Type|
+|:---:|:---:|:---:|
+|items|검색 결과 객체|List<T>|
+|totalCount|검색된 총 문서의 수|Integer|
+|items|조회된 아이템의 수|Integer|
+|items|요청한 조회 아이템의 수|Integer|
+|items|요청 페이지 번호|Integer|
+|items|현재 페이지가 마지막 페이지인지 여부|Boolean|
+
+##### Response Example
+```
+{
+    "items": [
+        {
+            "keyword": "맛집",
+            "score": 233
+        },
+        {
+            "keyword": "맛집 블로그",
+            "score": 25
+        },
+        {
+            "keyword": "스터디 모집",
+            "score": 5
+        },
+        ...
+    ],
+    "count" : 10
+}
 ```
